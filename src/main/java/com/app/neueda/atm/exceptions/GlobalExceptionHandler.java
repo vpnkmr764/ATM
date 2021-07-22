@@ -13,19 +13,23 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 @RestControllerAdvice
+@SuppressWarnings("rawtypes")
 public class GlobalExceptionHandler {
-     
-    @ExceptionHandler(value = AccountDetailsException.class)
+	
+	@ExceptionHandler(value = AccountDetailsException.class)
+	@SuppressWarnings("unchecked")
     public ResponseEntity wrongAccountDetails(AccountDetailsException accountDetailsException) {
         return new ResponseEntity(accountDetailsException.getMessage(), HttpStatus.NOT_FOUND);
     }
     
     @ExceptionHandler(value = TransactionException.class)
+    @SuppressWarnings("unchecked")
     public ResponseEntity transactionException(TransactionException transactionException) {
         return new ResponseEntity(transactionException.getMessage(), HttpStatus.NOT_FOUND);
     }
     
     @ExceptionHandler(value = Exception.class)
+    @SuppressWarnings("unchecked")
     public ResponseEntity generalException(Exception exception) {
         return new ResponseEntity(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
