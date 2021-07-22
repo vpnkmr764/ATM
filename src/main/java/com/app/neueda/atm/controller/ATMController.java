@@ -66,7 +66,13 @@ public class ATMController {
 		validatorService.validateWithdrawRequest(withdrawRequest);
 
 		Map<String, Integer> requestedAmountCurr = accountService.withdrawAmount(withdrawRequest);
+		
+		return createWithdrawResponse(requestedAmountCurr, 
+				accountService.getAccountByAccountNo(withdrawRequest.getAccountNumber()).getBalance());
 
+	}
+	
+	private WithdrawResponse createWithdrawResponse( Map<String, Integer> requestedAmountCurr , Double pendingBalance) {
 		StringBuilder currenciesInfo = new StringBuilder();
 
 		for (Entry<String, Integer> entry : requestedAmountCurr.entrySet()) {
@@ -74,7 +80,7 @@ public class ATMController {
 		}
 		WithdrawResponse withdrawResponse = new WithdrawResponse();
 		withdrawResponse.setCurrencyInfo(currenciesInfo.toString());
-		withdrawResponse.setBalance(accountService.getBalance(withdrawRequest.getAccountNumber()));
+		withdrawResponse.setBalance(pendingBalance);
 		return withdrawResponse;
 	}
 }

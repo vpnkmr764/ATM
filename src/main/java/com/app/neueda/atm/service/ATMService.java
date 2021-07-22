@@ -33,7 +33,7 @@ public class ATMService {
 	@Transactional
 	public Map<String, Integer> deductAmount(String atmId, Double requestedAmount) throws TransactionException {
 		ATMInfo atmInfo = atmRepository.getById(atmId);
-		Map<String, Integer> requestedAmountCurr = checkFeasibility(atmInfo, requestedAmount);
+		Map<String, Integer> requestedAmountCurr = updateCurrencies(atmInfo, requestedAmount);
 		atmInfo.setAmount(atmInfo.getAmount() - requestedAmount);
 		atmRepository.save(atmInfo);
 		return requestedAmountCurr;
@@ -50,7 +50,7 @@ public class ATMService {
 	 * else will throw exception to controller layer
 	 * 
 	 * */
-	private Map<String, Integer> checkFeasibility(ATMInfo atmInfo, Double requestedAmount) throws TransactionException {
+	private Map<String, Integer> updateCurrencies(ATMInfo atmInfo, Double requestedAmount) throws TransactionException {
 		Map<String, Integer> requestedAmountCurr = new HashMap<>();
 		List<Currencies> currencies = atmInfo.getCurrencies();
 
