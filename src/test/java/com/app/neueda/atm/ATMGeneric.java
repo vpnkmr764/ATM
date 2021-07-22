@@ -1,4 +1,4 @@
-package com.app.neueda.atm.test;
+package com.app.neueda.atm;
 
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;

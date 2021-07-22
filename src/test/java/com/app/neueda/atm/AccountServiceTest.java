@@ -1,4 +1,4 @@
-package com.app.neueda.atm.test;
+package com.app.neueda.atm;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -23,9 +23,9 @@ public class AccountServiceTest extends ATMGeneric {
 
 	@Test
 	public void getBalanceTest() {
-		String accountNo = "123456789";
+		String accountNo = "987654321";
 		Double balance = accountService.getBalance(accountNo);
-		assertEquals(800,balance.intValue());
+		assertEquals(1230,balance.intValue());
 	}	
 	
 }

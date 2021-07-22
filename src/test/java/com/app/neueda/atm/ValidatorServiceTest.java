@@ -1,4 +1,4 @@
-package com.app.neueda.atm.test;
+package com.app.neueda.atm;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
