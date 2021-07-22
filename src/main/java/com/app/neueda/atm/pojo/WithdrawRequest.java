@@ -8,7 +8,7 @@ public class WithdrawRequest {
 	String accountNumber;	
 	String pin;	
 	Double amount;
-	String atmId;
+	String atmNumber;
 	
 	public String getAccountNumber() {
 		return accountNumber;
@@ -28,10 +28,10 @@ public class WithdrawRequest {
 	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-	public String getAtmId() {
-		return atmId;
+	public String getAtmNumber() {
+		return atmNumber;
 	}
-	public void setAtmId(String atmId) {
-		this.atmId = atmId;
+	public void setAtmNumber(String atmNumber) {
+		this.atmNumber = atmNumber;
 	}
 }

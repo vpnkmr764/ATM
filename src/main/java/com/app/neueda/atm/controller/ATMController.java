@@ -48,7 +48,7 @@ public class ATMController {
 		return accountService.getBalance(accountNo);
 	}
 
-	 /* Input WithdrawRequest - has account no , pin , atm id and requested amount
+	 /* Input WithdrawRequest - has account no , pin , atm number and requested amount
 	  * Output WithdrawResponse - has remaining balance available in account and currencies info (details of notes)
 	  * 
       * It validates withdraw request before 

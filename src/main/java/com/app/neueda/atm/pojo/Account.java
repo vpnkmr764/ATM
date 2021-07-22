@@ -12,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 public class Account {	
 	@Id
+	Integer id;	
 	@Column(name ="account_number")
 	String accountNumber;	
 	String pin;	
@@ -41,6 +42,12 @@ public class Account {
 	}
 	public void setOverdraft(Double overdraft) {
 		this.overdraft = overdraft;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }

@@ -37,7 +37,7 @@ public class ValidatorService {
 	public void validateWithdrawRequest(WithdrawRequest withdrawRequest)
 			throws AccountDetailsException, TransactionException {
 
-		String atmId = withdrawRequest.getAtmId();
+		String atmNumber = withdrawRequest.getAtmNumber();
 		String pin = withdrawRequest.getPin();
 		String accountNumber = withdrawRequest.getAccountNumber();
 		Double requestedAmount = withdrawRequest.getAmount();
@@ -49,7 +49,7 @@ public class ValidatorService {
 			throw new TransactionException("Insufficient balance in your account : " + currentBalance);
 		}
 
-		Double atmAmount = atmService.getAmount(atmId);
+		Double atmAmount = atmService.getAmount(atmNumber);
 
 		if (requestedAmount > atmAmount) {
 			throw new TransactionException("Insufficient balance in ATM ");

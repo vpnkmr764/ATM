@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.app.neueda.atm.pojo.Account;
 @Repository
-public interface AccountRepository extends JpaRepository<Account,String> { }
+public interface AccountRepository extends JpaRepository<Account,Integer> { 
+	
+	Account  findByAccountNumber(String accountNumber);
+}

@@ -27,11 +27,11 @@ public class AccountService {
 	ATMService atmService;
 
 	public Account getAccountByAccountNo(String accountNo) {
-		return accountRepo.getById(accountNo);
+		return accountRepo.findByAccountNumber(accountNo);
 	}
 
 	public Double getBalance(String accountNo) {
-		return accountRepo.getById(accountNo).getBalance();
+		return accountRepo.findByAccountNumber(accountNo).getBalance();
 	}
     
 	/* Input Withdraw request
@@ -40,13 +40,13 @@ public class AccountService {
 	
 	@Transactional
 	public Map<String, Integer> withdrawAmount(WithdrawRequest withdrawRequest) throws TransactionException {
-		String atmId = withdrawRequest.getAtmId();
+		String atmNumber = withdrawRequest.getAtmNumber();
 		String accountNumber = withdrawRequest.getAccountNumber();
 		Double requestedAmount = withdrawRequest.getAmount();
 
-		Map<String, Integer> requestedAmountCurr = atmService.deductAmount(atmId, requestedAmount);
+		Map<String, Integer> requestedAmountCurr = atmService.deductAmount(atmNumber, requestedAmount);
 
-		Account account = accountRepo.getById(accountNumber);
+		Account account = accountRepo.findByAccountNumber(accountNumber);
 		account.setBalance(account.getBalance() - requestedAmount);
 		accountRepo.save(account);
 

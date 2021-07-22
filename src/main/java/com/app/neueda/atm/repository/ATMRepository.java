@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.app.neueda.atm.pojo.ATMInfo;
 @Repository
-public interface ATMRepository extends JpaRepository<ATMInfo,String> { }
+public interface ATMRepository extends JpaRepository<ATMInfo,Integer> { 
+	ATMInfo getByAtmNumber(String atmNumber);
+}

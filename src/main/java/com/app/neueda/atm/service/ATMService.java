@@ -26,13 +26,13 @@ public class ATMService {
 	@Autowired
 	ATMRepository atmRepository;
 
-	public Double getAmount(String atmId) {
-		return atmRepository.getById(atmId).getAmount();
+	public Double getAmount(String atmNumber) {
+		return atmRepository.getByAtmNumber(atmNumber).getAmount();
 	}
 
 	@Transactional
-	public Map<String, Integer> deductAmount(String atmId, Double requestedAmount) throws TransactionException {
-		ATMInfo atmInfo = atmRepository.getById(atmId);
+	public Map<String, Integer> deductAmount(String atmNumber, Double requestedAmount) throws TransactionException {
+		ATMInfo atmInfo = atmRepository.getByAtmNumber(atmNumber);
 		Map<String, Integer> requestedAmountCurr = updateCurrencies(atmInfo, requestedAmount);
 		atmInfo.setAmount(atmInfo.getAmount() - requestedAmount);
 		atmRepository.save(atmInfo);
@@ -63,7 +63,7 @@ public class ATMService {
 
 		for (Currencies currencies2 : currencies) {
 			String denomination = currencies2.getDenomination();
-			Integer totalCount = currencies2.getTotalCount();
+			Integer totalCount = currencies2.getCount();
 			
 			@SuppressWarnings("deprecation")
 			int number = new Double(requestedAmount / Integer.valueOf(denomination)).intValue();
@@ -71,11 +71,11 @@ public class ATMService {
 			if(number > totalCount) {
 				requestedAmount = (requestedAmount - (Integer.valueOf(denomination)*totalCount));
 				requestedAmountCurr.put(denomination, totalCount);
-				currencies2.setTotalCount(0);
+				currencies2.setCount(0);
 			}else {
 				requestedAmount = requestedAmount % Integer.valueOf(denomination);
 				requestedAmountCurr.put(denomination, number);
-				currencies2.setTotalCount(currencies2.getTotalCount()-number);
+				currencies2.setCount(currencies2.getCount()-number);
 			}
 			
 			if(requestedAmount ==0) {

@@ -15,7 +15,7 @@ public class Currencies {
 	@Id
 	Integer id;	
 	String denomination;
-	Integer totalCount;
+	Integer count;
 	
 	@ManyToOne
 	@JoinColumn(name = "atm_id")
@@ -41,10 +41,10 @@ public class Currencies {
 		this.denomination = denomination;
 	}	
 
-	public Integer getTotalCount() {
-		return totalCount;
+	public Integer getCount() {
+		return count;
 	}
-	public void setTotalCount(Integer totalCount) {
-		this.totalCount = totalCount;
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 }

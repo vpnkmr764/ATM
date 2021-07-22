@@ -1,21 +1,15 @@
-package com.app.neueda.atm;
+package com.app.neueda.atm.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.app.neueda.atm.pojo.Account;
 import com.app.neueda.atm.service.AccountService;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
-public class AccountServiceTest {
+public class AccountServiceTest extends ATMGeneric {
 	
 	@Autowired
 	AccountService accountService;
@@ -27,4 +21,11 @@ public class AccountServiceTest {
 		assertNotNull(account);
 	}
 
+	@Test
+	public void getBalanceTest() {
+		String accountNo = "123456789";
+		Double balance = accountService.getBalance(accountNo);
+		assertEquals(800,balance.intValue());
+	}	
+	
 }
